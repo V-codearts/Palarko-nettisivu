@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PALARKO</title>
+  <style>
+    :root {
+      --bg: #111;
+      --card: #1c1c1c;
+      --accent: #fff;
+      --text: #e0e0e0;
+      --muted: #aaa;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--card);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.3rem;
+    }
+
+    .accordion button {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+
+    .accordion-content {
+      display: none;
+      margin-top: 0.5rem;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      background: var(--card);
+      margin-top: auto;
+    }
+
+    .lang-switch button {
+      background: #333;
+      border: 1px solid #555;
+      margin: 0 0.3rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .lang-switch button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PALARKO</h1>
+    <p data-i18n="tagline">Valkeakoskelaista yrittämistä vuodesta 2019!</p>
+  </header>
+
+  <main class="container">
+    <div class="card accordion">
+      <button onclick="toggleAccordion(this)" data-i18n="moving_title">Muuttopalvelut</button>
+      <div class="accordion-content" data-i18n="moving_body">
+        <p>Tarjoamme muuttopalveluita kilpailukykyiseen hintaan (2 miestä ja auto 125 €/h, myös viikonloppuisin). Asiakkaamme arvostavat hellävaraista käsittelyä ja joustavuutta. Astianpesukoneita emme kytke osakehuoneistoissa, mutta pesukoneet ja pesutornit voidaan asentaa.</p>
+      </div>
+    </div>
+
+    <div class="card accordion">
+      <button onclick="toggleAccordion(this)" data-i18n="transport_title">Kuljetuspalvelut</button>
+      <div class="accordion-content" data-i18n="transport_body">
+        <p>Kuljetamme yksittäisiä tavaroita, kuten huonekaluja liikkeestä kotiin tai verkko-ostoja ympäri Pirkanmaata. Samalla voimme viedä vanhoja kalusteita kierrätykseen.</p>
+      </div>
+    </div>
+
+    <div class="card accordion">
+      <button onclick="toggleAccordion(this)" data-i18n="waste_title">Jätteiden poiskuljetus</button>
+      <div class="accordion-content" data-i18n="waste_body">
+        <p>Kuljetamme kaatopaikka- ja kierrätyskuormia sekä kohtuullisia määriä metallijätettä hyödynnettäväksi. Huom! Lämmityskattiloita emme nouda.</p>
+      </div>
+    </div>
+
+    <div class="card accordion">
+      <button onclick="toggleAccordion(this)" data-i18n="estate_title">Kuolinpesät ja tyhjennykset</button>
+      <div class="accordion-content" data-i18n="estate_body">
+        <p>Suoritamme asuntojen tyhjennyksiä, siivouksia ja kuolinpesien loppuraivauksia. Olemme saaneet kiitosta luotettavuudesta ja kyvystä hoitaa haastaviakin tilanteita.</p>
+      </div>
+    </div>
+
+    <div class="card accordion">
+      <button onclick="toggleAccordion(this)" data-i18n="other_title">Muut palvelut</button>
+      <div class="accordion-content" data-i18n="other_body">
+        <p>Autamme monipuolisissa arjen töissä: pihanhoidosta puiden kaatoon, polttopuiden tekoon, lumitöihin, hiekoitukseen, aitojen leikkuuseen ja renkaiden vaihtoon.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="contact_title">Ota yhteyttä</h2>
+      <div data-i18n="contact_body">
+        <p>PALARKO – Muuttovoima / Roskalanssi<br>
+        Palle Laarko<br>
+        045 630 7657<br>
+        laarkop@gmail.com</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2019 - <span id="year"></span> PALARKO</p>
+    <div class="lang-switch">
+      <button onclick="setLang('fi')">FI</button>
+      <button onclick="setLang('sv')">SV</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAccordion(btn) {
+      const content = btn.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const translations = {
+      fi: {
+        tagline: "Valkeakoskelaista yrittämistä vuodesta 2019!",
+        moving_title: "Muuttopalvelut",
+        moving_body: `<p>Tarjoamme muuttopalveluita kilpailukykyiseen hintaan (2 miestä ja auto 125 €/h, myös viikonloppuisin). Asiakkaamme arvostavat hellävaraista käsittelyä ja joustavuutta. Astianpesukoneita emme kytke osakehuoneistoissa, mutta pesukoneet ja pesutornit voidaan asentaa.</p>`,
+        transport_title: "Kuljetuspalvelut",
+        transport_body: `<p>Kuljetamme yksittäisiä tavaroita, kuten huonekaluja liikkeestä kotiin tai verkko-ostoja ympäri Pirkanmaata. Samalla voimme viedä vanhoja kalusteita kierrätykseen.</p>`,
+        waste_title: "Jätteiden poiskuljetus",
+        waste_body: `<p>Kuljetamme kaatopaikka- ja kierrätyskuormia sekä kohtuullisia määriä metallijätettä hyödynnettäväksi. Huom! Lämmityskattiloita emme nouda.</p>`,
+        estate_title: "Kuolinpesät ja tyhjennykset",
+        estate_body: `<p>Suoritamme asuntojen tyhjennyksiä, siivouksia ja kuolinpesien loppuraivauksia. Olemme saaneet kiitosta luotettavuudesta ja kyvystä hoitaa haastaviakin tilanteita.</p>`,
+        other_title: "Muut palvelut",
+        other_body: `<p>Autamme monipuolisissa arjen töissä: pihanhoidosta puiden kaatoon, polttopuiden tekoon, lumitöihin, hiekoitukseen, aitojen leikkuuseen ja renkaiden vaihtoon.</p>`,
+        contact_title: "Ota yhteyttä",
+        contact_body: `<p>PALARKO – Muuttovoima / Roskalanssi<br>Palle Laarko<br>045 630 7657<br>laarkop@gmail.com</p>`
+      },
+      sv: {
+        tagline: "Företagande från Valkeakoski sedan 2019!",
+        moving_title: "Flyttjänster",
+        moving_body: `<p>Vi erbjuder flyttjänster till ett konkurrenskraftigt pris (2 personer och bil 125 €/h, även på helger). Våra kunder uppskattar varsam hantering och flexibilitet. Diskmaskiner kopplas inte i bostadsrätter, men tvättmaskiner och tvättorn kan installeras.</p>`,
+        transport_title: "Transporttjänster",
+        transport_body: `<p>Vi transporterar enskilda möbler, till exempel från butik hem eller köp online runt hela Birkaland. Gamla möbler kan tas till återvinning samtidigt.</p>`,
+        waste_title: "Avfallstransporter",
+        waste_body: `<p>Vi kör sop- och återvinningslaster samt måttliga mängder metallavfall för återanvändning. OBS! Vi hämtar inte värmepannor.</p>`,
+        estate_title: "Dödsbon och tömningar",
+        estate_body: `<p>Vi utför tömningar, städningar och slutröjningar av dödsbon. Vi har fått beröm för pålitlighet och förmåga att hantera även svåra situationer.</p>`,
+        other_title: "Övriga tjänster",
+        other_body: `<p>Vi hjälper till med många vardagsarbeten: från gårdsskötsel till trädfällning, vedhuggning, snöröjning, sandning, häckklippning och däckbyten.</p>`,
+        contact_title: "Kontakta oss",
+        contact_body: `<p>PALARKO – Muuttovoima / Roskalanssi<br>Palle Laarko<br>045 630 7657<br>laarkop@gmail.com</p>`
+      },
+      en: {
+        tagline: "Entrepreneurship from Valkeakoski since 2019!",
+        moving_title: "Moving Services",
+        moving_body: `<p>We offer moving services at a competitive price (2 men and a van €125/h, weekends included). Customers value our careful handling and flexibility. Dishwashers are not installed in apartments, but washing machines and towers can be connected.</p>`,
+        transport_title: "Transport Services",
+        transport_body: `<p>We transport individual items, such as furniture from stores or online purchases, across Pirkanmaa. Old furniture can be taken to recycling at the same time.</p>`,
+        waste_title: "Waste Removal",
+        waste_body: `<p>We handle landfill and recycling loads as well as moderate amounts of scrap metal for reuse. Note: we do not collect heating boilers.</p>`,
+        estate_title: "Estate Clearances",
+        estate_body: `<p>We carry out apartment cleanouts, cleaning, and estate clearances. We are known for reliability and the ability to handle even sensitive situations.</p>`,
+        other_title: "Other Services",
+        other_body: `<p>We assist with a wide range of everyday tasks: from yard work to tree felling, firewood chopping, snow removal, sanding, hedge trimming, and tire changes.</p>`,
+        contact_title: "Contact Us",
+        contact_body: `<p>PALARKO – Muuttovoima / Roskalanssi<br>Palle Laarko<br>045 630 7657<br>laarkop@gmail.com</p>`
+      }
+    };
+
+    function setLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      document.documentElement.lang = lang;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
